@@ -1,3 +1,3 @@
-C program use timer
+# C program
 
 blinking LED: PH20 PH21
