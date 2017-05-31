@@ -32,14 +32,14 @@ void led_init(void)
     
     /* set PB10 and PB11 output */
     tmp = readl(PH_CFG2);
-    tmp &= ~(0x7 << 8);
-    tmp &= ~(0x7 << 12);
-    tmp |= (0x1 << 8);
-    tmp |= (0x1 << 12);
+    tmp &= ~(0x7 << 16);
+    tmp &= ~(0x7 << 20);
+    tmp |= (0x1 << 16);
+    tmp |= (0x1 << 20);
     writel(tmp, PH_CFG2);
     /* set PB10 and PB11 output 0 */
     tmp = readl(PH_DAT);
-    tmp &= ~(0x1 << 8);
-    tmp &= ~(0x1 << 12);
+    tmp &= ~(0x1 << 20);
+    tmp &= ~(0x1 << 21);
     writel(tmp, PH_DAT);
 }

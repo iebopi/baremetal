@@ -7,8 +7,8 @@
 
 /* GPIO reg addr */
 #define SUNXI_PIO_BASE          0x01C20800
-#define SUNXI_PIO_PH_CFG2_BASE  (SUNXI_PIO_BASE + 0x28)
-#define SUNXI_PIO_PH_DAT_BASE   (SUNXI_PIO_BASE + 0x34)
+#define SUNXI_PIO_PH_CFG2_BASE  (SUNXI_PIO_BASE + 0x104)
+#define SUNXI_PIO_PH_DAT_BASE   (SUNXI_PIO_BASE + 0x10C)
 
 /* global entry point */
 .globl _start
@@ -19,12 +19,12 @@ reset:
     /* before write, read the reg value into r1*/
     ldr r1, [r0]
     /* blue led is connected to PH21, green led is connected to PH20 */
-    ldr r2, =((0xf << 12) | (0xf << 8))
+    ldr r2, =((0xf << 16) | (0xf << 20))
     mvn r3, r2
     /* clear 4 bits for PH21 & PH20*/
     and r1, r1, r3
     /* set PH21 & PH20 for output function */
-    orr r1, r1, #((0x1 << 12) | (0x1 << 8))
+    orr r1, r1, #((0x1 << 16) | (0x1 << 20))
     str r1, [r0]
 
     ldr r0, =SUNXI_PIO_PH_DAT_BASE
